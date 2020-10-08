@@ -35,6 +35,7 @@ class MaterialUiIconPicker extends React.Component {
         height: 300,
         background: '#fff',
         color: '#222',
+        paddingTop: 15,
       },
       iconsItem: {
         textAlign: 'center',

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from '../global/Layout/Layout';
-import Placeholder from '../assets/images/placeholder.png';
+import Placeholder from '../assets/images/placeholder_2.png';
 import IconPicker from '../components/icon-picker';
 
 const App = (): JSX.Element => {
@@ -9,7 +9,6 @@ const App = (): JSX.Element => {
     <Layout title="Favicon Generator">
       <AppContainer>
         <div className="tools">
-          <h4>Tools Section</h4>
           <div className="tool-components">
             <div className="component-container">
               <IconPicker />
@@ -21,7 +20,7 @@ const App = (): JSX.Element => {
             <div className="component-container">Name Input</div>
           </div>
           <div className="button-group">
-            <button>Save</button>
+            <button className="save-button">Save</button>
           </div>
         </div>
         <div className="design">
@@ -44,16 +43,11 @@ const AppContainer = styled.div`
     width: 600px;
     background-color: #a7a7a7;
     padding: 20px;
-    h4 {
-      color: #000;
-      text-align: center;
-      font-weight: 500;
-    }
     .tool-components {
       border: 1px solid #222;
       padding: 10px 5px;
-      margin-bottom: 10px;
-      height: 700px;
+      margin-bottom: 20px;
+      height: 750px;
       .component-container {
         border: 1px solid #fff;
         padding: 20px;
@@ -64,6 +58,18 @@ const AppContainer = styled.div`
     .button-group {
       display: flex;
       justify-content: flex-end;
+      .save-button {
+        border: 0;
+        background-color: #2979ff;
+        box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        padding: 10px 20px;
+        color: #fff;
+        outline: 0;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 14px;
+      }
     }
   }
   .design {

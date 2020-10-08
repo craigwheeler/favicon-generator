@@ -7,9 +7,10 @@ class IconsStorage {
   }
 
   getIcons(): any {
-    return fetch(
-      'https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIcons-Regular.codepoints',
-    )
+    const MaterialIconsTwoToneRegular =
+      'https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIconsTwoTone-Regular.codepoints';
+
+    return fetch(MaterialIconsTwoToneRegular)
       .then((response) => response.text())
       .then((data) => data.split('\n'))
       .then((namesAndCodes) =>
