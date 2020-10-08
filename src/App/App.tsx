@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../global/Layout/Layout';
 import Placeholder from '../assets/images/placeholder.png';
+import IconPicker from '../components/icon-picker';
 
 const App = (): JSX.Element => {
   return (
@@ -10,7 +11,9 @@ const App = (): JSX.Element => {
         <div className="tools">
           <h4>Tools Section</h4>
           <div className="tool-components">
-            <div className="component-container">Icon Selector</div>
+            <div className="component-container">
+              <IconPicker />
+            </div>
             <div className="component-container">Adjust Padding</div>
             <div className="component-container">Color Picker</div>
             <div className="component-container">Shape</div>
