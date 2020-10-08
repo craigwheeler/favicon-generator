@@ -4,119 +4,11 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import IconsStorage from './IconsStorage';
 import Radium from 'radium';
+import styled from 'styled-components';
 
 class MaterialUiIconPicker extends React.Component {
   iconsStorage;
   styles;
-
-  getStyles() {
-    const backgroundBox = {
-      backgroundColor: 'rgb(224, 224, 224)',
-      borderRadius: 2,
-      height: 45,
-      opacity: 0,
-      position: 'absolute',
-      top: 0,
-      transitionProperty: 'opacity',
-      transitionDuration: '200ms',
-      transitionTimingFunction: 'ease-out',
-      width: 50,
-      transitionDelay: 'initial',
-    };
-
-    const selectedBackgroundBox = Object.assign({}, backgroundBox);
-    selectedBackgroundBox.opacity = 1;
-
-    return {
-      iconsGrid: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        overflowX: 'hidden',
-        height: 300,
-        background: '#fff',
-        color: '#222',
-        paddingTop: 15,
-      },
-      iconsItem: {
-        textAlign: 'center',
-        width: '25%',
-        flexGrow: 1,
-        marginBottom: 10,
-        position: 'relative',
-        height: 50,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        cursor: 'pointer',
-      },
-      iconsItemCaption: {
-        textTransform: 'uppercase',
-        fontSize: 10,
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        position: 'relative',
-        zIndex: 2,
-        maxWidth: 100,
-      },
-      iconsItemIcon: {
-        color: 'rgb(117, 117, 117)',
-        fontSize: 30,
-        width: 30,
-        height: 30,
-        marginBottom: 10,
-      },
-      backgroundBox: backgroundBox,
-      selectedBackgroundBox: selectedBackgroundBox,
-      header: {
-        wrapper: {
-          display: 'flex',
-          flexDirection: 'column',
-          paddingBottom: 0,
-          paddingLeft: 0,
-          paddingRight: 0,
-        },
-        input: {
-          flex: 1,
-          border: 'none',
-          padding: 15,
-          fontSize: 17,
-          margin: '0 40',
-          ':focus': {
-            outline: 'none',
-          },
-        },
-        icons: {},
-        title: {
-          margin: 0,
-          paddingLeft: 24,
-          paddingTop: 0,
-          paddingRight: 24,
-          textTransform: 'uppercase',
-        },
-        search: {
-          boxShadow:
-            'rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px, rgba(0, 0, 0, 0.2) 0px 2px 4px -1px',
-          display: 'flex',
-          marginTop: 10,
-          position: 'relative',
-          zIndex: 4,
-          background: '#fff',
-          alignItems: 'center',
-          paddingLeft: 10,
-          paddingRight: 10,
-        },
-        searchIcon: {
-          color: '#ddd',
-        },
-        closeIcon: {
-          cursor: 'pointer',
-          color: '#555',
-        },
-      },
-    };
-  }
 
   constructor(props) {
     super(props);
@@ -173,7 +65,6 @@ class MaterialUiIconPicker extends React.Component {
   select(icon) {
     // console.log('icon clicked: ', icon);
     this.props.onPick(this.state.selected);
-
     this.setState({
       pickerDialogOpen: this.state.pickerDialogOpen,
       icons: this.state.icons,
@@ -216,56 +107,35 @@ class MaterialUiIconPicker extends React.Component {
   }
 
   render() {
-    const styles = this.getStyles();
-
     const icons = this.state.icons.map((icon, index) => {
       return (
-        <div key={index} style={styles.iconsItem} onClick={() => this.select(icon)}>
-          <div
-            style={
-              this.state.selected && this.state.selected.name === icon.name
-                ? styles.selectedBackgroundBox
-                : styles.backgroundBox
-            }
-          ></div>
-          <FontIcon style={styles.iconsItemIcon} className="material-icons">
-            {icon.name}
-          </FontIcon>
-        </div>
+        <ItemContainer key={index} onClick={() => this.select(icon)}>
+          {this.state.selected && this.state.selected.name === icon.name ? (
+            <SelectedBackgroundBox />
+          ) : (
+            <BackgroundBox />
+          )}
+          <FontIcon className="material-icons">{icon.name}</FontIcon>
+        </ItemContainer>
       );
     });
 
     return (
       <MuiThemeProvider>
         <>
-          <div style={styles.header.wrapper}>
-            <p style={styles.header.title}>{this.props.title}</p>
-            <div style={styles.header.search}>
-              <FontIcon className="material-icons" style={styles.header.searchIcon}>
-                search
-              </FontIcon>
-              <input
-                type="text"
-                style={styles.header.input}
-                placeholder="Search"
-                onChange={this.filterList.bind(this)}
-              />
+          <Header>
+            <p className="title">{this.props.title}</p>
+            <div className="search">
+              <FontIcon className="material-icons searchIcon">search</FontIcon>
+              <input type="text" className="input" placeholder="Search Icons" onChange={this.filterList.bind(this)} />
               {this.state.didSearch ? (
-                <FontIcon
-                  style={styles.header.closeIcon}
-                  onClick={this.clearSearch.bind(this)}
-                  className="material-icons"
-                >
+                <FontIcon onClick={this.clearSearch.bind(this)} className="material-icons closeIcon">
                   close
                 </FontIcon>
               ) : null}
             </div>
-          </div>
-          {this.state.icons.length > 0 ? (
-            <div style={styles.iconsGrid}>{icons}</div>
-          ) : (
-            <LinearProgress mode="indeterminate" />
-          )}
+          </Header>
+          {this.state.icons.length > 0 ? <IconsGrid>{icons}</IconsGrid> : <LinearProgress mode="indeterminate" />}
         </>
       </MuiThemeProvider>
     );
@@ -281,3 +151,85 @@ MaterialUiIconPicker.propTypes = {
 };
 
 export default Radium(MaterialUiIconPicker);
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  .input {
+    flex: 1;
+    border: none;
+    padding: 15px;
+    font-size: 17px;
+    margin: 0 40px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .title {
+    margin: 0;
+    padding-left: 24px;
+    padding-top: 0;
+    padding-right: 24px;
+    text-transform: uppercase;
+  }
+  .search {
+    display: flex;
+    margin-top: 10;
+    position: relative;
+    z-index: 4;
+    background: #fff;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px,
+      rgba(0, 0, 0, 0.2) 0px 2px 4px -1px;
+  }
+  .searchIcon {
+    color: #ddd;
+  }
+  .closeIcon {
+    cursor: pointer;
+    color: #555;
+  }
+`;
+
+const ItemContainer = styled.div`
+  text-align: center;
+  width: 50px;
+  flex-grow: 1;
+  margin-bottom: 10px;
+  position: relative;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+`;
+
+const IconsGrid = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  height: 300px;
+  background: #fff;
+  color: #222;
+  padding-top: 15px;
+`;
+
+const BackgroundBox = styled.div`
+  position: absolute;
+  top: 0;
+  background-color: #2979ff6e;
+  border-radius: 2px;
+  width: 50px;
+  height: 45px;
+  opacity: 0;
+`;
+
+const SelectedBackgroundBox = styled(BackgroundBox)`
+  opacity: 1;
+`;
