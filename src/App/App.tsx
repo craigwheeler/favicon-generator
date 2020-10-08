@@ -16,12 +16,11 @@ const App = (): JSX.Element => {
             </div>
             <div className="component-container">Adjust Padding</div>
             <div className="component-container">Color Picker</div>
-            <div className="component-container">Shape</div>
-            <div className="component-container">Effects</div>
+            {/* <div className="component-container">Shape</div> */}
+            {/* <div className="component-container">Effects</div> */}
             <div className="component-container">Name Input</div>
           </div>
           <div className="button-group">
-            <button>Reset</button>
             <button>Save</button>
           </div>
         </div>

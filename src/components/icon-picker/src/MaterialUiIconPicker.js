@@ -1,5 +1,5 @@
 import React from 'react';
-import { RaisedButton, FlatButton, Dialog, FontIcon, LinearProgress } from 'material-ui';
+import { FontIcon, LinearProgress } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import IconsStorage from './IconsStorage';
@@ -13,14 +13,14 @@ class MaterialUiIconPicker extends React.Component {
     const backgroundBox = {
       backgroundColor: 'rgb(224, 224, 224)',
       borderRadius: 2,
-      height: 120,
+      height: 45,
       opacity: 0,
       position: 'absolute',
       top: 0,
       transitionProperty: 'opacity',
       transitionDuration: '200ms',
       transitionTimingFunction: 'ease-out',
-      width: 112,
+      width: 50,
       transitionDelay: 'initial',
     };
 
@@ -31,6 +31,10 @@ class MaterialUiIconPicker extends React.Component {
       iconsGrid: {
         display: 'flex',
         flexWrap: 'wrap',
+        overflowX: 'hidden',
+        height: 300,
+        background: '#fff',
+        color: '#222',
       },
       iconsItem: {
         textAlign: 'center',
@@ -38,7 +42,7 @@ class MaterialUiIconPicker extends React.Component {
         flexGrow: 1,
         marginBottom: 10,
         position: 'relative',
-        height: 120,
+        height: 50,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -57,9 +61,9 @@ class MaterialUiIconPicker extends React.Component {
       },
       iconsItemIcon: {
         color: 'rgb(117, 117, 117)',
-        fontSize: 48,
-        width: 48,
-        height: 48,
+        fontSize: 30,
+        width: 30,
+        height: 30,
         marginBottom: 10,
       },
       backgroundBox: backgroundBox,
@@ -166,6 +170,9 @@ class MaterialUiIconPicker extends React.Component {
   }
 
   select(icon) {
+    // console.log('icon clicked: ', icon);
+    this.props.onPick(this.state.selected);
+
     this.setState({
       pickerDialogOpen: this.state.pickerDialogOpen,
       icons: this.state.icons,
@@ -210,18 +217,6 @@ class MaterialUiIconPicker extends React.Component {
   render() {
     const styles = this.getStyles();
 
-    const actions = [
-      <FlatButton label={this.props.cancelLabel} primary onClick={this.handleClose.bind(this)} key={Math.random()} />,
-      <RaisedButton
-        label={this.props.pickLabel}
-        primary
-        disabled={!this.state.selected}
-        onClick={this.pickAndClose.bind(this)}
-        icon={this.state.selected ? <FontIcon className="material-icons">{this.state.selected.name}</FontIcon> : null}
-        key={Math.random()}
-      />,
-    ];
-
     const icons = this.state.icons.map((icon, index) => {
       return (
         <div key={index} style={styles.iconsItem} onClick={() => this.select(icon)}>
@@ -235,55 +230,42 @@ class MaterialUiIconPicker extends React.Component {
           <FontIcon style={styles.iconsItemIcon} className="material-icons">
             {icon.name}
           </FontIcon>
-          <div style={styles.iconsItemCaption}>{icon.name.split('_').join(' ')}</div>
         </div>
       );
     });
 
     return (
       <MuiThemeProvider>
-        <div>
-          <RaisedButton onClick={this.handleOpen.bind(this)} label={this.props.label} primary />
-
-          <Dialog
-            autoScrollBodyContent
-            title={
-              <div style={styles.header.wrapper}>
-                <p style={styles.header.title}>{this.props.modalTitle}</p>
-                <div style={styles.header.search}>
-                  <FontIcon className="material-icons" style={styles.header.searchIcon}>
-                    search
-                  </FontIcon>
-                  <input
-                    type="text"
-                    style={styles.header.input}
-                    placeholder="Search"
-                    onChange={this.filterList.bind(this)}
-                  />
-                  {this.state.didSearch ? (
-                    <FontIcon
-                      style={styles.header.closeIcon}
-                      onClick={this.clearSearch.bind(this)}
-                      className="material-icons"
-                    >
-                      close
-                    </FontIcon>
-                  ) : null}
-                </div>
-              </div>
-            }
-            actions={actions}
-            modal={false}
-            open={this.state.pickerDialogOpen}
-            onRequestClose={this.handleClose.bind(this)}
-          >
-            {this.state.icons.length > 0 ? (
-              <div style={styles.iconsGrid}>{icons}</div>
-            ) : (
-              <LinearProgress mode="indeterminate" />
-            )}
-          </Dialog>
-        </div>
+        <>
+          <div style={styles.header.wrapper}>
+            <p style={styles.header.title}>{this.props.title}</p>
+            <div style={styles.header.search}>
+              <FontIcon className="material-icons" style={styles.header.searchIcon}>
+                search
+              </FontIcon>
+              <input
+                type="text"
+                style={styles.header.input}
+                placeholder="Search"
+                onChange={this.filterList.bind(this)}
+              />
+              {this.state.didSearch ? (
+                <FontIcon
+                  style={styles.header.closeIcon}
+                  onClick={this.clearSearch.bind(this)}
+                  className="material-icons"
+                >
+                  close
+                </FontIcon>
+              ) : null}
+            </div>
+          </div>
+          {this.state.icons.length > 0 ? (
+            <div style={styles.iconsGrid}>{icons}</div>
+          ) : (
+            <LinearProgress mode="indeterminate" />
+          )}
+        </>
       </MuiThemeProvider>
     );
   }
@@ -292,16 +274,9 @@ class MaterialUiIconPicker extends React.Component {
 MaterialUiIconPicker.propTypes = {
   cancelLabel: PropTypes.string,
   label: PropTypes.string,
-  modalTitle: PropTypes.string,
+  title: PropTypes.string,
   onPick: PropTypes.func.isRequired,
   pickLabel: PropTypes.string,
-};
-
-MaterialUiIconPicker.defaultProps = {
-  cancelLabel: 'Cancel',
-  label: 'Pick icon',
-  modalTitle: 'Material icon picker',
-  pickLabel: 'Pick',
 };
 
 export default Radium(MaterialUiIconPicker);
