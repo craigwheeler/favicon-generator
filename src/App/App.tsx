@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../global/Layout/Layout';
-import Placeholder from '../assets/images/placeholder_2.png';
 import IconPicker from '../components/icon-picker';
+import { FontIcon } from 'material-ui';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const App = (): JSX.Element => {
+  const [icon, setIcon] = useState({ name: '360', code: 'e577' });
+  const [size, setSize] = useState(125);
+  const [iconColor, setIconColor] = useState('#fff');
+
   const showPickedIcon = (icon: any): any => {
     console.info('Selected Icon', icon); // prints {name: "access_alarm", code: "e190"}
+    setIcon(icon);
   };
 
   return (
@@ -28,7 +34,26 @@ const App = (): JSX.Element => {
           </div>
         </div>
         <div className="design">
-          <img src={Placeholder} width={200} alt="Icon Plaecholder" />
+          <div className="icon-container">
+            <div className="icon-background">
+              <MuiThemeProvider>
+                <FontIcon
+                  style={{
+                    fontSize: size,
+                    color: iconColor,
+                  }}
+                  className="material-icons"
+                >
+                  {icon.name}
+                </FontIcon>
+              </MuiThemeProvider>
+            </div>
+            <div className="selected-icon-label">
+              <h4>Selected Icon</h4>
+              <p>Name: {icon.name}</p>
+              <p>Code: {icon.code}</p>
+            </div>
+          </div>
         </div>
       </AppContainer>
     </Layout>
@@ -42,6 +67,46 @@ const AppContainer = styled.div`
   background-color: #777;
   display: flex;
   height: 100%;
+  .icon-container {
+    display: flex;
+    align-items: center;
+    .icon-background {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: -3px 1px 20px 9px rgba(0, 0, 0, 0.12);
+      border-radius: 2px;
+      position: relative;
+      width: 192px;
+      height: 192px;
+      background-color: #4b87ed;
+      color: #fff;
+      border-radius: 10%;
+      .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: 'liga';
+        -webkit-font-smoothing: antialiased;
+      }
+    }
+    .selected-icon-label {
+      text-align: left;
+      margin-left: 20px;
+      width: 300px;
+      p {
+        margin: 5px 0;
+      }
+    }
+  }
+
   .tools {
     height: 100%;
     background-color: #a7a7a7;
