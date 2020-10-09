@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SketchPicker } from 'react-color';
 
-const ColorPicker = ({ onColorChange }: any): JSX.Element => {
+const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
   const [color, setColor] = useState({
@@ -10,6 +10,10 @@ const ColorPicker = ({ onColorChange }: any): JSX.Element => {
     b: 19,
     a: 1,
   });
+
+  useEffect(() => {
+    setColor(currentColor);
+  }, [currentColor]);
 
   const handleClick = (): void => {
     setDisplayColorPicker(!displayColorPicker);
@@ -52,7 +56,7 @@ const ColorPicker = ({ onColorChange }: any): JSX.Element => {
     width: '36px',
     height: '14px',
     borderRadius: '2px',
-    background: `rgb(${color.r}, ${color.g}, ${color.b})`,
+    background: `rgba(${color.r}, ${color.g}, ${color.b}, ${color.a})`,
   };
 
   return (

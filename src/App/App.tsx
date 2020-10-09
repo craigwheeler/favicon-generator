@@ -9,16 +9,18 @@ import ColorPicker from '../primitives/color-picker';
 const App = (): JSX.Element => {
   const [icon, setIcon] = useState({ name: '360', code: 'e577' });
   const [size, setSize] = useState(125);
+
+  const [bgColor, setBgColor] = useState({
+    r: 75,
+    g: 135,
+    b: 237,
+    a: 100,
+  });
+
   const [iconColor, setIconColor] = useState({
     r: 255,
     g: 255,
     b: 255,
-    a: 1,
-  });
-  const [color, setColor] = useState({
-    r: 241,
-    g: 112,
-    b: 19,
     a: 1,
   });
 
@@ -28,7 +30,7 @@ const App = (): JSX.Element => {
   };
 
   const updateBGColor = (color: any): any => {
-    setColor(color);
+    setBgColor(color);
   };
 
   const updateIconColor = (color: any): any => {
@@ -45,14 +47,20 @@ const App = (): JSX.Element => {
             </div>
             <div className="component-container color-picker">
               <span>Background Color: </span>
-              <ColorPicker onColorChange={updateBGColor} />
+              <ColorPicker onColorChange={updateBGColor} currentColor={bgColor} />
               <span>Icon Color: </span>
-              <ColorPicker onColorChange={updateIconColor} />
+              <ColorPicker onColorChange={updateIconColor} currentColor={iconColor} />
             </div>
-            <div className="component-container">Adjust Favicon Shape</div>
-            <div className="component-container">Adjust Padding</div>
-            <div className="component-container">Adjust Icon Effects</div>
-            <div className="component-container">Filename Input</div>
+            <div className="component-container">
+              <span>Favicon Shape</span>
+            </div>
+            <div className="component-container">
+              <span>Adjust Padding</span>
+            </div>
+            {/* <div className="component-container">Adjust Icon Effects</div> */}
+            <div className="component-container">
+              <span>Filename Input</span>
+            </div>
           </div>
           <div className="button-group">
             <button className="save-button">Save</button>
@@ -60,12 +68,15 @@ const App = (): JSX.Element => {
         </div>
         <div className="design">
           <div className="icon-container">
-            <div className="icon-background" style={{ backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})` }}>
+            <div
+              className="icon-background"
+              style={{ backgroundColor: `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, ${bgColor.a})` }}
+            >
               <MuiThemeProvider>
                 <FontIcon
                   style={{
                     fontSize: size,
-                    color: `rgb(${iconColor.r}, ${iconColor.g}, ${iconColor.b})`,
+                    color: `rgba(${iconColor.r}, ${iconColor.g}, ${iconColor.b}, ${bgColor.a})`,
                   }}
                   className="material-icons"
                 >

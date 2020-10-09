@@ -9,12 +9,13 @@ const SideNav = (): JSX.Element => {
       <div className="nav-group">
         <button>
           <Icon name="dashboard" height={20} width={20} alt="Icon" />
-          Image Icon
+          Icon Editor
         </button>
-        <button>
+        {/* TODO: add functionality to create favicons using text input instead of an icon */}
+        {/* <button>
           <Icon name="align-left" height={20} width={20} alt="Icon" />
           Text Icon
-        </button>
+        </button> */}
         <button>
           <Icon name="help" height={20} width={20} alt="Icon" />
           Help
