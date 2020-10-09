@@ -4,15 +4,35 @@ import Layout from '../global/Layout/Layout';
 import IconPicker from '../components/icon-picker';
 import { FontIcon } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ColorPicker from '../primitives/color-picker';
 
 const App = (): JSX.Element => {
   const [icon, setIcon] = useState({ name: '360', code: 'e577' });
   const [size, setSize] = useState(125);
-  const [iconColor, setIconColor] = useState('#fff');
+  const [iconColor, setIconColor] = useState({
+    r: 255,
+    g: 255,
+    b: 255,
+    a: 1,
+  });
+  const [color, setColor] = useState({
+    r: 241,
+    g: 112,
+    b: 19,
+    a: 1,
+  });
 
   const showPickedIcon = (icon: any): any => {
     console.info('Selected Icon', icon); // prints {name: "access_alarm", code: "e190"}
     setIcon(icon);
+  };
+
+  const updateBGColor = (color: any): any => {
+    setColor(color);
+  };
+
+  const updateIconColor = (color: any): any => {
+    setIconColor(color);
   };
 
   return (
@@ -23,7 +43,12 @@ const App = (): JSX.Element => {
             <div className="component-container">
               <IconPicker onSelect={showPickedIcon} />
             </div>
-            <div className="component-container">Background Color Picker</div>
+            <div className="component-container color-picker">
+              <span>Background Color: </span>
+              <ColorPicker onColorChange={updateBGColor} />
+              <span>Icon Color: </span>
+              <ColorPicker onColorChange={updateIconColor} />
+            </div>
             <div className="component-container">Adjust Favicon Shape</div>
             <div className="component-container">Adjust Padding</div>
             <div className="component-container">Adjust Icon Effects</div>
@@ -35,12 +60,12 @@ const App = (): JSX.Element => {
         </div>
         <div className="design">
           <div className="icon-container">
-            <div className="icon-background">
+            <div className="icon-background" style={{ backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})` }}>
               <MuiThemeProvider>
                 <FontIcon
                   style={{
                     fontSize: size,
-                    color: iconColor,
+                    color: `rgb(${iconColor.r}, ${iconColor.g}, ${iconColor.b})`,
                   }}
                   className="material-icons"
                 >
@@ -79,7 +104,6 @@ const AppContainer = styled.div`
       position: relative;
       width: 192px;
       height: 192px;
-      background-color: #4b87ed;
       color: #fff;
       border-radius: 10%;
       .material-icons {
@@ -116,6 +140,10 @@ const AppContainer = styled.div`
       padding: 10px 5px;
       margin-bottom: 20px;
       height: 750px;
+      .color-picker {
+        display: flex;
+        justify-content: space-between;
+      }
       .component-container {
         border: 1px solid #fff;
         padding: 20px;
