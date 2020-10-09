@@ -67,9 +67,6 @@ const NavContainer = styled.aside`
     height: 100%;
     justify-content: space-between;
     left: 0;
-    /* padding: 130px 0 0 0; */
-    width: 300px;
-    /* position: fixed; */
     padding-top: 25px;
 
     .nav-group {

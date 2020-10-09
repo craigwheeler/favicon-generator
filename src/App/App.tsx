@@ -5,19 +5,23 @@ import Placeholder from '../assets/images/placeholder_2.png';
 import IconPicker from '../components/icon-picker';
 
 const App = (): JSX.Element => {
+  const showPickedIcon = (icon: any): any => {
+    console.info('Selected Icon', icon); // prints {name: "access_alarm", code: "e190"}
+  };
+
   return (
     <Layout title="Favicon Generator">
       <AppContainer>
         <div className="tools">
           <div className="tool-components">
             <div className="component-container">
-              <IconPicker />
+              <IconPicker onSelect={showPickedIcon} />
             </div>
+            <div className="component-container">Background Color Picker</div>
+            <div className="component-container">Adjust Favicon Shape</div>
             <div className="component-container">Adjust Padding</div>
-            <div className="component-container">Color Picker</div>
-            {/* <div className="component-container">Shape</div> */}
-            {/* <div className="component-container">Effects</div> */}
-            <div className="component-container">Name Input</div>
+            <div className="component-container">Adjust Icon Effects</div>
+            <div className="component-container">Filename Input</div>
           </div>
           <div className="button-group">
             <button className="save-button">Save</button>
@@ -40,7 +44,6 @@ const AppContainer = styled.div`
   height: 100%;
   .tools {
     height: 100%;
-    width: 600px;
     background-color: #a7a7a7;
     padding: 20px;
     .tool-components {
