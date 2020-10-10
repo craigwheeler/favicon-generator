@@ -24,15 +24,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: 'Avenir Next', 'Helvetica Neue', 'Helvetica', sans-serif;
-    font-weight: 500;
-    background: #fff;
-    overflow-x: hidden;
-    max-width: 100%;
-  }
-
-  h1 {
-    font-size: 22px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
 
 `;
