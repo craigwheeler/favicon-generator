@@ -2,20 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IInput {
-  placeholder?: string;
   label?: string;
+  value: number;
+  handleChange: (event: any) => void;
 }
 
-const Input = ({ label, placeholder }: IInput): JSX.Element => {
+const RangeSlider = ({ label, value, handleChange }: IInput): JSX.Element => {
   return (
     <InputContainer>
       <span className="input-label">{label}</span>
-      <input placeholder={placeholder} />
+      <input type="range" min={50} max={200} value={value} onChange={(e) => handleChange(e)} step="1" />
     </InputContainer>
   );
 };
 
-export default Input;
+export default RangeSlider;
 
 const InputContainer = styled.div`
   display: flex;
@@ -29,17 +30,7 @@ const InputContainer = styled.div`
     min-width: 125px;
   }
   input {
-    padding: 8px 15px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    font-size: 12px;
-    font-weight: 600;
-    border-radius: 3px;
-
-    &:focus {
-      outline: 0;
-    }
+    cursor: pointer;
   }
 `;

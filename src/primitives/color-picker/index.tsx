@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { GithubPicker } from 'react-color';
+import { CompactPicker } from 'react-color';
 
 const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
@@ -67,7 +67,7 @@ const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
       {displayColorPicker && (
         <div style={popover}>
           <div style={cover} onClick={handleClose} />
-          <GithubPicker
+          <CompactPicker
             color={{
               r: color.r,
               g: color.g,

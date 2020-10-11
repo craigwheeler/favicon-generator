@@ -6,10 +6,12 @@ import { FontIcon } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ColorPicker from '../primitives/color-picker';
 import Input from '../primitives/input';
+import RangeSlider from '../primitives/range-slider';
 
 const App = (): JSX.Element => {
-  const [icon, setIcon] = useState({ name: '360', code: 'e577' });
-  const [size, setSize] = useState(125);
+  const [icon, setIcon] = useState({ name: 'polymer', code: 'e8ab' });
+  const [sliderValue, setSliderValue] = useState(125);
+  const [radius, setRadius] = useState(10);
 
   const [bgColor, setBgColor] = useState({
     r: 75,
@@ -38,6 +40,11 @@ const App = (): JSX.Element => {
     setIconColor(color);
   };
 
+  const handleSliderChange = (e: any): any => {
+    const value = Number(e.target.value);
+    setSliderValue(value);
+  };
+
   return (
     <Layout title="Favicon Generator">
       <AppContainer>
@@ -53,12 +60,14 @@ const App = (): JSX.Element => {
               <ColorPicker onColorChange={updateIconColor} currentColor={iconColor} />
             </div>
             <Divider />
-            <div className="component-container">
+            <div className="component-container favicon-shape">
               <span className="label">Favicon Shape</span>
+              <div className="square" onClick={() => setRadius(10)} />
+              <div className="circle" onClick={() => setRadius(50)} />
             </div>
             <Divider />
             <div className="component-container">
-              <span className="label">Adjust Padding</span>
+              <RangeSlider value={sliderValue} handleChange={handleSliderChange} label={'Adjust Icon Size'} />
             </div>
             {/* <Divider />
             <div className="component-container">
@@ -66,7 +75,6 @@ const App = (): JSX.Element => {
             </div> */}
             <Divider />
             <div className="component-container">
-              {/* <span className="label">Filename Input</span> */}
               <Input label="Filename Input" />
             </div>
           </div>
@@ -78,12 +86,15 @@ const App = (): JSX.Element => {
           <div className="icon-container">
             <div
               className="icon-background"
-              style={{ backgroundColor: `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, ${bgColor.a})` }}
+              style={{
+                borderRadius: `${radius}%`,
+                backgroundColor: `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, ${bgColor.a})`,
+              }}
             >
               <MuiThemeProvider>
                 <FontIcon
                   style={{
-                    fontSize: size,
+                    fontSize: sliderValue,
                     color: `rgba(${iconColor.r}, ${iconColor.g}, ${iconColor.b}, ${bgColor.a})`,
                   }}
                   className="material-icons"
@@ -117,6 +128,9 @@ const AppContainer = styled.div`
   .icon-container {
     display: flex;
     align-items: center;
+    min-width: 500px;
+    justify-content: left;
+    margin-left: 300px;
     .icon-background {
       display: flex;
       justify-content: center;
@@ -127,7 +141,6 @@ const AppContainer = styled.div`
       width: 192px;
       height: 192px;
       color: #e8e8e8;
-      border-radius: 10%;
       .material-icons {
         font-family: 'Material Icons';
         font-weight: normal;
@@ -146,7 +159,6 @@ const AppContainer = styled.div`
     .selected-icon-label {
       text-align: left;
       margin-left: 20px;
-      width: 300px;
       color: #e8e8e8;
       p {
         margin: 5px 0;
@@ -173,6 +185,27 @@ const AppContainer = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+      .favicon-shape {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .square {
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          width: 25px;
+          height: 25px;
+          border-radius: 10%;
+          cursor: pointer;
+          background-color: #105cc8;
+        }
+        .circle {
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          width: 25px;
+          height: 25px;
+          border-radius: 50%;
+          cursor: pointer;
+          background-color: #105cc8;
+        }
       }
       .component-container {
         padding: 20px;
