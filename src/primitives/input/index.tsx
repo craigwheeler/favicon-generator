@@ -3,13 +3,13 @@ import styled from 'styled-components';
 
 interface IInput {
   placeholder?: string;
-  label: string;
+  label?: string;
 }
 
 const Input = ({ label, placeholder }: IInput): JSX.Element => {
   return (
     <InputContainer>
-      <p>{label}</p>
+      <span className="input-label">{label}</span>
       <input placeholder={placeholder} />
     </InputContainer>
   );
@@ -18,13 +18,26 @@ const Input = ({ label, placeholder }: IInput): JSX.Element => {
 export default Input;
 
 const InputContainer = styled.div`
-  p {
-    margin: 10px 0 5px 2px;
-    font-size: 12px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  .input-label {
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    font-weight: 600;
+    margin-right: 10px;
+    min-width: 100px;
   }
   input {
-    padding: 15px;
+    padding: 8px 15px;
     width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 3px;
+
     &:focus {
       outline: 0;
     }

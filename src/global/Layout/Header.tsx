@@ -41,6 +41,7 @@ const HeaderContainer = styled.header`
   .brand-logo {
     display: flex;
     width: 300px;
+    margin-left: 5px;
   }
 
   .header-logo {
@@ -51,7 +52,7 @@ const HeaderContainer = styled.header`
     color: #fff;
     font-size: 20px;
     font-weight: 500;
-    margin-left: 10px;
+    margin-left: 8px;
   }
 
   .button-group {
@@ -65,7 +66,7 @@ const HeaderContainer = styled.header`
       border: none;
       border-right: #171c25 solid 1px;
       background-color: #171c25;
-      color: #fff;
+      color: #e8e8e8;
 
       &:hover {
         cursor: pointer;

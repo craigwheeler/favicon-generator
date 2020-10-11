@@ -13,7 +13,7 @@ const FooterContainer = styled.footer`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  color: #fff;
+  color: #e8e8e8;
   padding-right: 25px;
   font-size: 12px;
 `;

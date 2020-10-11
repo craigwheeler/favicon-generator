@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SketchPicker } from 'react-color';
+import { GithubPicker } from 'react-color';
 
 const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
@@ -45,7 +45,7 @@ const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
 
   const swatch: any = {
     padding: '5px',
-    background: '#fff',
+    background: 'rgb(255, 255, 255, 0.1)',
     borderRadius: '1px',
     boxShadow: '0 0 0 1px rgba(0,0,0,.1)',
     display: 'inline-block',
@@ -67,7 +67,7 @@ const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
       {displayColorPicker && (
         <div style={popover}>
           <div style={cover} onClick={handleClose} />
-          <SketchPicker
+          <GithubPicker
             color={{
               r: color.r,
               g: color.g,

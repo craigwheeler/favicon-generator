@@ -9,7 +9,6 @@ const SideNav = (): JSX.Element => {
       <div className="nav-group">
         <button>
           <Icon name="dashboard" height={20} width={20} alt="Icon" />
-          Icon Editor
         </button>
         {/* TODO: add functionality to create favicons using text input instead of an icon */}
         {/* <button>
@@ -18,7 +17,6 @@ const SideNav = (): JSX.Element => {
         </button> */}
         <button>
           <Icon name="help" height={20} width={20} alt="Icon" />
-          Help
         </button>
       </div>
     </NavContainer>
@@ -47,7 +45,7 @@ const NavContainer = styled.aside`
       justify-content: center;
       align-items: center;
       background-color: #171c25;
-      color: #fff;
+      color: #e8e8e8;
 
       &:hover {
         cursor: pointer;
@@ -81,9 +79,9 @@ const NavContainer = styled.aside`
         justify-content: flex-start;
         flex-direction: row;
         width: 100%;
-        padding: 15px 0 15px 30px;
         border: none;
-
+        justify-content: center;
+        padding: 10px 0;
         svg {
           margin-right: 10px;
         }

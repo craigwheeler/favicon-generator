@@ -5,6 +5,7 @@ import IconPicker from '../components/icon-picker';
 import { FontIcon } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ColorPicker from '../primitives/color-picker';
+import Input from '../primitives/input';
 
 const App = (): JSX.Element => {
   const [icon, setIcon] = useState({ name: '360', code: 'e577' });
@@ -46,20 +47,27 @@ const App = (): JSX.Element => {
               <IconPicker onSelect={showPickedIcon} />
             </div>
             <div className="component-container color-picker">
-              <span>Background Color: </span>
+              <span className="label">Background Color </span>
               <ColorPicker onColorChange={updateBGColor} currentColor={bgColor} />
-              <span>Icon Color: </span>
+              <span className="label">Icon Color </span>
               <ColorPicker onColorChange={updateIconColor} currentColor={iconColor} />
             </div>
+            <Divider />
             <div className="component-container">
-              <span>Favicon Shape</span>
+              <span className="label">Favicon Shape</span>
             </div>
+            <Divider />
             <div className="component-container">
-              <span>Adjust Padding</span>
+              <span className="label">Adjust Padding</span>
             </div>
-            {/* <div className="component-container">Adjust Icon Effects</div> */}
+            {/* <Divider />
             <div className="component-container">
-              <span>Filename Input</span>
+              <span className="label">Adjust Effects</span>
+            </div> */}
+            <Divider />
+            <div className="component-container">
+              {/* <span className="label">Filename Input</span> */}
+              <Input label="Filename Input" />
             </div>
           </div>
           <div className="button-group">
@@ -98,9 +106,12 @@ const App = (): JSX.Element => {
 
 export default App;
 
+const Divider = styled.div`
+  border-top: 1px dotted #4c4c4c;
+`;
+
 const AppContainer = styled.div`
   grid-area: main;
-  background-color: #777;
   display: flex;
   height: 100%;
   .icon-container {
@@ -115,7 +126,7 @@ const AppContainer = styled.div`
       position: relative;
       width: 192px;
       height: 192px;
-      color: #fff;
+      color: #e8e8e8;
       border-radius: 10%;
       .material-icons {
         font-family: 'Material Icons';
@@ -136,6 +147,7 @@ const AppContainer = styled.div`
       text-align: left;
       margin-left: 20px;
       width: 300px;
+      color: #e8e8e8;
       p {
         margin: 5px 0;
       }
@@ -144,21 +156,27 @@ const AppContainer = styled.div`
 
   .tools {
     height: 100%;
-    background-color: #a7a7a7;
+    background-color: #171c25;
     padding: 20px;
+    /* box-shadow: -20px 0px 20px 20px #171c25; */
+    border-left: 1px dotted #4c4c4c;
     .tool-components {
-      border: 1px solid #222;
       padding: 10px 5px;
       margin-bottom: 20px;
       height: 750px;
+      .label {
+        font-size: 13px;
+        letter-spacing: 0.3px;
+        font-weight: 600;
+      }
       .color-picker {
         display: flex;
         justify-content: space-between;
+        align-items: center;
       }
       .component-container {
-        border: 1px solid #fff;
         padding: 20px;
-        color: #fff;
+        color: #e8e8e8;
         margin: 5px;
       }
     }
@@ -170,12 +188,13 @@ const AppContainer = styled.div`
         background-color: #2979ff;
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
         cursor: pointer;
-        padding: 10px 20px;
-        color: #fff;
+        padding: 10px 25px;
+        color: #e8e8e8;
         outline: 0;
         text-transform: uppercase;
         font-weight: 600;
         font-size: 14px;
+        border-radius: 3px;
       }
     }
   }
@@ -185,5 +204,6 @@ const AppContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #2c2d35;
   }
 `;
