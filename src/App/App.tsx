@@ -12,6 +12,7 @@ const App = (): JSX.Element => {
   const [icon, setIcon] = useState({ name: 'polymer', code: 'e8ab' });
   const [sliderValue, setSliderValue] = useState(125);
   const [radius, setRadius] = useState(10);
+  const [width, setWidth] = useState(192);
 
   const [bgColor, setBgColor] = useState({
     r: 75,
@@ -45,6 +46,21 @@ const App = (): JSX.Element => {
     setSliderValue(value);
   };
 
+  const displayCircle = () => {
+    setRadius(50);
+    setWidth(192);
+  };
+
+  const displaySquare = () => {
+    setRadius(10);
+    setWidth(192);
+  };
+
+  const displayRectangle = () => {
+    setRadius(8);
+    setWidth(275);
+  };
+
   return (
     <Layout title="Favicon Generator">
       <AppContainer>
@@ -62,8 +78,9 @@ const App = (): JSX.Element => {
             <Divider />
             <div className="component-container favicon-shape">
               <span className="label">Favicon Shape</span>
-              <div className="square" onClick={() => setRadius(10)} />
-              <div className="circle" onClick={() => setRadius(50)} />
+              <div className="square" onClick={() => displaySquare()} />
+              <div className="circle" onClick={() => displayCircle()} />
+              <div className="rectangle" onClick={() => displayRectangle()} />
             </div>
             <Divider />
             <div className="component-container">
@@ -75,11 +92,13 @@ const App = (): JSX.Element => {
             </div> */}
             <Divider />
             <div className="component-container">
-              <Input label="Filename Input" />
+              <Input label="Filename Input" placeholder="Enter a filename..." />
             </div>
           </div>
           <div className="button-group">
-            <button className="save-button">Save</button>
+            <button className="save-button" onClick={() => alert('Save functionality is coming soon!')}>
+              Save
+            </button>
           </div>
         </div>
         <div className="design">
@@ -87,6 +106,7 @@ const App = (): JSX.Element => {
             <div
               className="icon-background"
               style={{
+                width: `${width}px`,
                 borderRadius: `${radius}%`,
                 backgroundColor: `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, ${bgColor.a})`,
               }}
@@ -103,11 +123,10 @@ const App = (): JSX.Element => {
                 </FontIcon>
               </MuiThemeProvider>
             </div>
-            <div className="selected-icon-label">
-              <h4>Selected Icon</h4>
+            {/* <div className="selected-icon-label">
               <p>Name: {icon.name}</p>
               <p>Code: {icon.code}</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </AppContainer>
@@ -126,11 +145,11 @@ const AppContainer = styled.div`
   display: flex;
   height: 100%;
   .icon-container {
-    display: flex;
+    /* display: flex;
     align-items: center;
     min-width: 500px;
     justify-content: left;
-    margin-left: 300px;
+    margin-left: 300px; */
     .icon-background {
       display: flex;
       justify-content: center;
@@ -138,7 +157,6 @@ const AppContainer = styled.div`
       box-shadow: -3px 1px 20px 9px rgba(0, 0, 0, 0.12);
       border-radius: 2px;
       position: relative;
-      width: 192px;
       height: 192px;
       color: #e8e8e8;
       .material-icons {
@@ -157,12 +175,11 @@ const AppContainer = styled.div`
       }
     }
     .selected-icon-label {
-      text-align: left;
-      margin-left: 20px;
+      text-align: center;
       color: #e8e8e8;
-      p {
+      /* p {
         margin: 5px 0;
-      }
+      } */
     }
   }
 
@@ -205,6 +222,19 @@ const AppContainer = styled.div`
           border-radius: 50%;
           cursor: pointer;
           background-color: #105cc8;
+        }
+        .rectangle {
+          position: relative;
+          width: 35px;
+          height: 25px;
+          margin: 20px 0;
+          background-color: #105cc8;
+          color: white;
+          text-align: center;
+          text-indent: 0.1em;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          cursor: pointer;
+          border-radius: 5px;
         }
       }
       .component-container {
