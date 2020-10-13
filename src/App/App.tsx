@@ -13,14 +13,12 @@ const App = (): JSX.Element => {
   const [sliderValue, setSliderValue] = useState(125);
   const [radius, setRadius] = useState(10);
   const [width, setWidth] = useState(192);
-
   const [bgColor, setBgColor] = useState({
     r: 75,
     g: 135,
     b: 237,
     a: 100,
   });
-
   const [iconColor, setIconColor] = useState({
     r: 255,
     g: 255,
@@ -61,6 +59,11 @@ const App = (): JSX.Element => {
     setWidth(275);
   };
 
+  const handleSave = () => {
+    // console.log('Filename input val: ', inputVal);
+    // alert('Save functionality is coming soon!');
+  };
+
   return (
     <Layout title="Favicon Generator">
       <AppContainer>
@@ -76,6 +79,10 @@ const App = (): JSX.Element => {
               <ColorPicker onColorChange={updateIconColor} currentColor={iconColor} />
             </div>
             <Divider />
+            <div className="component-container">
+              <RangeSlider value={sliderValue} handleChange={handleSliderChange} label={'Adjust Icon Size'} />
+            </div>
+            <Divider />
             <div className="component-container favicon-shape">
               <span className="label">Favicon Shape</span>
               <div className="square" onClick={() => displaySquare()} />
@@ -84,19 +91,16 @@ const App = (): JSX.Element => {
             </div>
             <Divider />
             <div className="component-container">
-              <RangeSlider value={sliderValue} handleChange={handleSliderChange} label={'Adjust Icon Size'} />
+              <Input label={'Filename'} placeholder="Enter a filename..." />
             </div>
+            <Divider />
             {/* <Divider />
             <div className="component-container">
               <span className="label">Adjust Effects</span>
             </div> */}
-            <Divider />
-            <div className="component-container">
-              <Input label="Filename Input" placeholder="Enter a filename..." />
-            </div>
           </div>
           <div className="button-group">
-            <button className="save-button" onClick={() => alert('Save functionality is coming soon!')}>
+            <button className="save-button" onClick={() => handleSave()}>
               Save
             </button>
           </div>
@@ -227,7 +231,6 @@ const AppContainer = styled.div`
           position: relative;
           width: 35px;
           height: 25px;
-          margin: 20px 0;
           background-color: #105cc8;
           color: white;
           text-align: center;
