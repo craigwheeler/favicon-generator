@@ -29,7 +29,7 @@ const App = (): JSX.Element => {
   const faviconRef = React.createRef<any>();
 
   const showPickedIcon = (icon: any): any => {
-    console.info('Selected Icon', icon); // prints {name: "access_alarm", code: "e190"}
+    // console.info('Selected Icon', icon); // prints {name: "access_alarm", code: "e190"}
     setIcon(icon);
   };
 
