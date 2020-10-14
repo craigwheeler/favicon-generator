@@ -92,9 +92,10 @@ const App = (): JSX.Element => {
               <div className="rectangle" onClick={() => displayRectangle()} />
             </div>
             <Divider />
+            {/* <Divider />
             <div className="component-container">
               <Input label={'Filename'} placeholder="Enter a filename..." />
-            </div>
+            </div> */}
           </div>
           <div className="button-group">
             <button className="save-button" onClick={() => handleSave()}>

@@ -1,29 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Profile from '../../assets/images/profile.png';
-import VALogo from '../../assets/images/logo.png';
-import Icon from '../../primitives/Icon';
+import Logo from '../../assets/images/logo.png';
+// import Profile from '../../assets/images/profile.png';
+// import Icon from '../../primitives/Icon';
 
 const Header = (): JSX.Element => {
   return (
     <HeaderContainer>
       <div className="brand-logo">
-        <img className="header-logo" src={VALogo} alt="Logo" />
+        <img className="header-logo" src={Logo} alt="Logo" />
         <h1 className="header-logo-text">FaviconGenerator.io</h1>
       </div>
       <div className="button-group">
-        <button>
+        {/* <button>
           <Icon name="bell" alt="Notifications" height={25} width={25} />
-        </button>
-        <button>
+        </button> */}
+        {/* <button>
           <Icon name="settings" alt="Settings" height={25} width={25} />
-        </button>
-        <button className="profile">
+        </button> */}
+        {/* <button className="profile">
           <img src={Profile} id="profile-image" alt="Profile Plaecholder" />
           <label htmlFor="profile-image">Craig Wheeler</label>
           <Icon name="down-tab" alt="Down Tab" height={10} width={10} />
-        </button>
+        </button> */}
       </div>
     </HeaderContainer>
   );

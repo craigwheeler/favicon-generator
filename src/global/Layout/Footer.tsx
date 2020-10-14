@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Footer = (): JSX.Element => {
-  return <FooterContainer>2020 | Some kinda footer information</FooterContainer>;
+  return <FooterContainer>2020 | FaviconGenerator.io</FooterContainer>;
 };
 
 export default Footer;
