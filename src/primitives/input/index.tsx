@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 interface IInput {
@@ -10,20 +10,24 @@ const Input = ({ label, placeholder }: IInput): JSX.Element => {
   const [value, setValue] = useState('');
   const ref = React.useRef<any>(null);
 
+  const handleClickOutside = useCallback(
+    (e: any) => {
+      if (!ref.current) return;
+      if (!ref.current.contains(e.target)) {
+        // props.onClose();
+        // console.log('submit current state val');
+        console.log('value: ', value);
+      }
+    },
+    [value],
+  );
+
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, []);
-
-  const handleClickOutside = (e: any) => {
-    if (!ref.current) return;
-    if (!ref.current.contains(e.target)) {
-      // props.onClose();
-      console.log('submit current state val');
-    }
-  };
+  }, [handleClickOutside]);
 
   const handleChange = (e: any) => {
     setValue(e.target.value);

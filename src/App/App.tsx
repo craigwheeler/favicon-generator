@@ -7,6 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ColorPicker from '../primitives/color-picker';
 import Input from '../primitives/input';
 import RangeSlider from '../primitives/range-slider';
+import { exportComponentAsICO } from '../components/utils/file-converter';
 
 const App = (): JSX.Element => {
   const [icon, setIcon] = useState({ name: 'polymer', code: 'e8ab' });
@@ -25,6 +26,8 @@ const App = (): JSX.Element => {
     b: 255,
     a: 1,
   });
+
+  const faviconRef = React.createRef<any>();
 
   const showPickedIcon = (icon: any): any => {
     console.info('Selected Icon', icon); // prints {name: "access_alarm", code: "e190"}
@@ -60,8 +63,7 @@ const App = (): JSX.Element => {
   };
 
   const handleSave = () => {
-    // console.log('Filename input val: ', inputVal);
-    // alert('Save functionality is coming soon!');
+    exportComponentAsICO(faviconRef.current);
   };
 
   return (
@@ -106,16 +108,17 @@ const App = (): JSX.Element => {
           </div>
         </div>
         <div className="design">
-          <div className="icon-container">
-            <div
-              className="icon-background"
-              style={{
-                width: `${width}px`,
-                borderRadius: `${radius}%`,
-                backgroundColor: `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, ${bgColor.a})`,
-              }}
-            >
-              <MuiThemeProvider>
+          <div id="favicon" className="icon-container">
+            <MuiThemeProvider>
+              <div
+                ref={faviconRef}
+                className="icon-background"
+                style={{
+                  width: `${width}px`,
+                  borderRadius: `${radius}%`,
+                  backgroundColor: `rgba(${bgColor.r}, ${bgColor.g}, ${bgColor.b}, ${bgColor.a})`,
+                }}
+              >
                 <FontIcon
                   style={{
                     fontSize: sliderValue,
@@ -125,8 +128,9 @@ const App = (): JSX.Element => {
                 >
                   {icon.name}
                 </FontIcon>
-              </MuiThemeProvider>
-            </div>
+              </div>
+            </MuiThemeProvider>
+
             {/* <div className="selected-icon-label">
               <p>Name: {icon.name}</p>
               <p>Code: {icon.code}</p>
@@ -158,11 +162,12 @@ const AppContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: -3px 1px 20px 9px rgba(0, 0, 0, 0.12);
       border-radius: 2px;
       position: relative;
       height: 192px;
       color: #e8e8e8;
+      /* TODO: html2canvas bug - doesnt work with box-shadow */
+      /* box-shadow: -3px 1px 20px 9px rgba(0, 0, 0, 0.12); */
       .material-icons {
         font-family: 'Material Icons';
         font-weight: normal;
