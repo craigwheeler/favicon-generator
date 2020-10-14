@@ -5,26 +5,25 @@ import IconPicker from '../components/icon-picker';
 import { FontIcon } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ColorPicker from '../primitives/color-picker';
-import Input from '../primitives/input';
 import RangeSlider from '../primitives/range-slider';
-import { exportComponentAsICO } from '../components/utils/file-converter';
+import { exportAsPNG } from '../components/utils/file-converter';
 
 const App = (): JSX.Element => {
   const [icon, setIcon] = useState({ name: 'polymer', code: 'e8ab' });
   const [sliderValue, setSliderValue] = useState(125);
-  const [radius, setRadius] = useState(10);
+  const [radius, setRadius] = useState(50);
   const [width, setWidth] = useState(192);
   const [bgColor, setBgColor] = useState({
-    r: 75,
-    g: 135,
-    b: 237,
+    r: 16,
+    g: 92,
+    b: 200,
     a: 100,
   });
   const [iconColor, setIconColor] = useState({
     r: 255,
     g: 255,
     b: 255,
-    a: 1,
+    a: 100,
   });
 
   const faviconRef = React.createRef<any>();
@@ -63,7 +62,7 @@ const App = (): JSX.Element => {
   };
 
   const handleSave = () => {
-    exportComponentAsICO(faviconRef.current);
+    exportAsPNG(faviconRef.current);
   };
 
   return (
@@ -87,8 +86,8 @@ const App = (): JSX.Element => {
             <Divider />
             <div className="component-container favicon-shape">
               <span className="label">Favicon Shape</span>
-              <div className="square" onClick={() => displaySquare()} />
               <div className="circle" onClick={() => displayCircle()} />
+              <div className="square" onClick={() => displaySquare()} />
               <div className="rectangle" onClick={() => displayRectangle()} />
             </div>
             <Divider />
@@ -118,7 +117,7 @@ const App = (): JSX.Element => {
                 <FontIcon
                   style={{
                     fontSize: sliderValue,
-                    color: `rgba(${iconColor.r}, ${iconColor.g}, ${iconColor.b}, ${bgColor.a})`,
+                    color: `rgba(${iconColor.r}, ${iconColor.g}, ${iconColor.b}, ${iconColor.a})`,
                   }}
                   className="material-icons"
                 >
@@ -245,6 +244,9 @@ const AppContainer = styled.div`
         padding: 20px;
         color: #e8e8e8;
         margin: 5px;
+        .search {
+          min-width: 400px;
+        }
       }
     }
     .button-group {
@@ -252,10 +254,10 @@ const AppContainer = styled.div`
       justify-content: flex-end;
       .save-button {
         border: 0;
-        background-color: #2979ff;
+        background-color: #105cc8;
         box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
         cursor: pointer;
-        padding: 10px 25px;
+        padding: 10px 30px;
         color: #e8e8e8;
         outline: 0;
         text-transform: uppercase;

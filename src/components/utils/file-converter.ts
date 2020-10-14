@@ -24,23 +24,23 @@ const saveAs = (uri: any, filename: any) => {
 const exportComponent = (node: any, fileName: any, type: any) => {
   return html2canvas(node, {
     backgroundColor: null,
-    // scrollY: -window.scrollY,
-    // useCORS: true,
+    // scale: 0.17, // 32px - favicon.ico
+    scale: 0.67, // 128px - chrome web store icon & small windows 8 star screen icon
   }).then((canvas) => {
     saveAs(canvas.toDataURL(type, 1.0), fileName);
   });
 };
 
-const exportComponentAsICO = (node: any, fileName: any = 'favicon.ico', type: any = fileType.ICO) => {
+const exportAsICO = (node: any, fileName: any = 'favicon.ico', type: any = fileType.ICO) => {
   return exportComponent(node, fileName, type);
 };
 
-const exportComponentAsPNG = (node: any, fileName: any = 'favicon.png', type: any = fileType.PNG) => {
+const exportAsPNG = (node: any, fileName: any = 'favicon.png', type: any = fileType.PNG) => {
   return exportComponent(node, fileName, type);
 };
 
-const exportComponentAsJPEG = (node: any, fileName: any = 'favicon.jpeg', type: any = fileType.JPEG) => {
+const exportAsJPEG = (node: any, fileName: any = 'favicon.jpeg', type: any = fileType.JPEG) => {
   return exportComponent(node, fileName, type);
 };
 
-export { exportComponentAsICO, exportComponentAsJPEG, exportComponentAsPNG };
+export { exportAsICO, exportAsJPEG, exportAsPNG };

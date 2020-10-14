@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CompactPicker } from 'react-color';
+import { SketchPicker } from 'react-color';
 
 const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
@@ -67,7 +67,7 @@ const ColorPicker = ({ currentColor, onColorChange }: any): JSX.Element => {
       {displayColorPicker && (
         <div style={popover}>
           <div style={cover} onClick={handleClose} />
-          <CompactPicker
+          <SketchPicker
             color={{
               r: color.r,
               g: color.g,
