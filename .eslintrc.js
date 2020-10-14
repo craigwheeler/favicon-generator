@@ -36,6 +36,6 @@ module.exports = {
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/ban-ts-comment': 'warn',
-    quotes: [2, 'single', { avoidEscape: true }],
+    // quotes: [2, 'single', { avoidEscape: true }],
   },
 };

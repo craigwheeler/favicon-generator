@@ -7,7 +7,7 @@ const fileType = {
   PDF: 'application/pdf',
 };
 
-const saveAs = (uri, filename) => {
+const saveAs = (uri: any, filename: any) => {
   const link = document.createElement('a');
 
   if (typeof link.download === 'string') {
@@ -21,7 +21,7 @@ const saveAs = (uri, filename) => {
   }
 };
 
-const exportComponent = (node, fileName, type) => {
+const exportComponent = (node: any, fileName: any, type: any) => {
   return html2canvas(node, {
     backgroundColor: null,
     // scrollY: -window.scrollY,
@@ -31,15 +31,15 @@ const exportComponent = (node, fileName, type) => {
   });
 };
 
-const exportComponentAsICO = (node, fileName = 'favicon.ico', type = fileType.ICO) => {
+const exportComponentAsICO = (node: any, fileName: any = 'favicon.ico', type: any = fileType.ICO) => {
   return exportComponent(node, fileName, type);
 };
 
-const exportComponentAsPNG = (node, fileName = 'favicon.png', type = fileType.PNG) => {
+const exportComponentAsPNG = (node: any, fileName: any = 'favicon.png', type: any = fileType.PNG) => {
   return exportComponent(node, fileName, type);
 };
 
-const exportComponentAsJPEG = (node, fileName = 'favicon.jpeg', type = fileType.JPEG) => {
+const exportComponentAsJPEG = (node: any, fileName: any = 'favicon.jpeg', type: any = fileType.JPEG) => {
   return exportComponent(node, fileName, type);
 };
 

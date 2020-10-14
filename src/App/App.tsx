@@ -95,11 +95,6 @@ const App = (): JSX.Element => {
             <div className="component-container">
               <Input label={'Filename'} placeholder="Enter a filename..." />
             </div>
-            <Divider />
-            {/* <Divider />
-            <div className="component-container">
-              <span className="label">Adjust Effects</span>
-            </div> */}
           </div>
           <div className="button-group">
             <button className="save-button" onClick={() => handleSave()}>
