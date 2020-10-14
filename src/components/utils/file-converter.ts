@@ -1,10 +1,14 @@
 import html2canvas from 'html2canvas';
 
+const imageSizes = [
+  { value: 0.17 }, // 32px - favicon.ico
+  { value: 0.67 }, // 128px - chrome web store icon & small windows 8 star screen icon
+];
+
 const fileType = {
   ICO: 'image/ico',
-  PNG: 'image/png',
   JPEG: 'image/jpeg',
-  PDF: 'application/pdf',
+  PNG: 'image/png',
 };
 
 const saveAs = (uri: any, filename: any) => {
@@ -21,26 +25,27 @@ const saveAs = (uri: any, filename: any) => {
   }
 };
 
-const exportComponent = (node: any, fileName: any, type: any) => {
+const generateImage = (node: any, fileName: any, type: any, scale: any) => {
   return html2canvas(node, {
     backgroundColor: null,
-    // scale: 0.17, // 32px - favicon.ico
-    scale: 0.67, // 128px - chrome web store icon & small windows 8 star screen icon
+    scale: scale.value,
   }).then((canvas) => {
     saveAs(canvas.toDataURL(type, 1.0), fileName);
   });
 };
 
-const exportAsICO = (node: any, fileName: any = 'favicon.ico', type: any = fileType.ICO) => {
-  return exportComponent(node, fileName, type);
+const saveAsPNG = (node: any, fileName: any = 'favicon.png', type: any = fileType.PNG) => {
+  imageSizes.map((scale: any) => {
+    generateImage(node, fileName, type, scale);
+  });
 };
 
-const exportAsPNG = (node: any, fileName: any = 'favicon.png', type: any = fileType.PNG) => {
-  return exportComponent(node, fileName, type);
-};
+// const saveAsICO = (node: any, fileName: any = 'favicon.ico', type: any = fileType.ICO) => {
+//   generateImage(node, fileName, type);
+// };
 
-const exportAsJPEG = (node: any, fileName: any = 'favicon.jpeg', type: any = fileType.JPEG) => {
-  return exportComponent(node, fileName, type);
-};
+// const savwAsJPEG = (node: any, fileName: any = 'favicon.jpeg', type: any = fileType.JPEG) => {
+//   generateImage(node, fileName, type);
+// };
 
-export { exportAsICO, exportAsJPEG, exportAsPNG };
+export { saveAsPNG };

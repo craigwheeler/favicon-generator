@@ -6,7 +6,7 @@ import { FontIcon } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import ColorPicker from '../primitives/color-picker';
 import RangeSlider from '../primitives/range-slider';
-import { exportAsPNG } from '../components/utils/file-converter';
+import { saveAsPNG } from '../components/utils/file-converter';
 
 const App = (): JSX.Element => {
   const [icon, setIcon] = useState({ name: 'polymer', code: 'e8ab' });
@@ -62,7 +62,7 @@ const App = (): JSX.Element => {
   };
 
   const handleSave = () => {
-    exportAsPNG(faviconRef.current);
+    saveAsPNG(faviconRef.current);
   };
 
   return (
