@@ -1,23 +1,23 @@
 import React from 'react';
 import device from '../device';
-import Icon from '../../primitives/Icon';
 import styled from 'styled-components';
+// import Icon from '../../primitives/Icon';
 
 const SideNav = (): JSX.Element => {
   return (
     <NavContainer>
       <div className="nav-group">
-        <button>
+        {/* TODO: re-enable menu items as new functionaltiy is added */}
+        {/* <button>
           <Icon name="dashboard" height={20} width={20} alt="Icon" />
-        </button>
-        {/* TODO: add functionality to create favicons using text input instead of an icon */}
+        </button> */}
         {/* <button>
           <Icon name="align-left" height={20} width={20} alt="Icon" />
           Text Icon
         </button> */}
-        <button>
+        {/* <button>
           <Icon name="help" height={20} width={20} alt="Icon" />
-        </button>
+        </button> */}
       </div>
     </NavContainer>
   );

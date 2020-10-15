@@ -13,6 +13,8 @@ const App = (): JSX.Element => {
   const [sliderValue, setSliderValue] = useState(125);
   const [radius, setRadius] = useState(50);
   const [width, setWidth] = useState(192);
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const [bgColor, setBgColor] = useState({
     r: 16,
     g: 92,
@@ -64,7 +66,8 @@ const App = (): JSX.Element => {
   // };
 
   const handleSave = () => {
-    createFaviconPkg(faviconRef.current);
+    setIsDisabled(true);
+    createFaviconPkg(faviconRef.current, setIsDisabled);
   };
 
   return (
@@ -99,7 +102,7 @@ const App = (): JSX.Element => {
             </div> */}
           </div>
           <div className="button-group">
-            <button className="save-button" onClick={() => handleSave()}>
+            <button className="save-button" onClick={() => handleSave()} disabled={isDisabled}>
               Save
             </button>
           </div>

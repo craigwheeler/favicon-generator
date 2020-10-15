@@ -4,19 +4,21 @@ import JSZipUtils from 'jszip-utils';
 import { saveAs } from 'file-saver';
 
 const fileTypes = [
-  'favicon-36x36',
-  'favicon-48x48',
-  'favicon-57x57',
-  'favicon-60x60',
-  'favicon-72x72',
-  'favicon-76x76',
-  'favicon-96x96',
-  'favicon-114x114',
-  'favicon-120x120',
-  'favicon-144x144',
-  'favicon-152x152',
-  'favicon-180x180',
+  // 'favicon-36x36',
+  // 'favicon-48x48',
+  // 'favicon-57x57',
+  // 'favicon-60x60',
+  // 'favicon-72x72',
+  // 'favicon-76x76',
+  // 'favicon-96x96',
+  // 'favicon-114x114',
+  // 'favicon-120x120',
+  // 'favicon-144x144',
+  // 'favicon-152x152',
+  // 'favicon-180x180',
+  'favicon-32x32',
   'favicon-192x192',
+  'favicon-512x512',
 ];
 
 const calcScale = (px: number) => {
@@ -54,7 +56,7 @@ const generateZIP = (dataUrlArray: any) => {
   });
 };
 
-const createFaviconPkg = (node: any, type = 'image/png') => {
+const createFaviconPkg = (node: any, setIsDisabled: any, type = 'image/png') => {
   const imgArr = fileTypes.map((file: any) => {
     const str = file.split('x').pop();
     const scale = calcScale(Number(str));
@@ -65,6 +67,7 @@ const createFaviconPkg = (node: any, type = 'image/png') => {
 
   Promise.all(imgArr).then((dataUrlArray) => {
     generateZIP(dataUrlArray);
+    setIsDisabled(false);
   });
 };
 

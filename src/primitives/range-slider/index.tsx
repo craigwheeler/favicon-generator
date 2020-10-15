@@ -31,6 +31,7 @@ const InputContainer = styled.div`
   }
   input {
     width: 100%;
+    height: 5px;
     cursor: pointer;
   }
 `;
