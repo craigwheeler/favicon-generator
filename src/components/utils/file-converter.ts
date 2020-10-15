@@ -3,20 +3,30 @@ import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
 import { saveAs } from 'file-saver';
 
-const imageSizes = [
-  { value: 0.17 }, // 32px - favicon.ico
-  { value: 0.67 }, // 128px - chrome web store icon & small windows 8 star screen icon
-  { value: 0.8 }, // 152px - ipad touch icon
-  { value: 0.87 }, // 167px - ipad retina touch icon
-  { value: 0.94 }, // 180px - iphone retina
-  { value: 0.87 }, // 192px - google developer web app manifest recommendation
-  { value: 1 }, // 196px - chrome for android home screen icon
+const fileTypes = [
+  'favicon-36x36',
+  'favicon-48x48',
+  'favicon-57x57',
+  'favicon-60x60',
+  'favicon-72x72',
+  'favicon-76x76',
+  'favicon-96x96',
+  'favicon-114x114',
+  'favicon-120x120',
+  'favicon-144x144',
+  'favicon-152x152',
+  'favicon-180x180',
+  'favicon-192x192',
 ];
+
+const calcScale = (px: number) => {
+  return px / 192;
+};
 
 const generateImage = (node: any, type: any, scale: any) => {
   return html2canvas(node, {
     backgroundColor: null,
-    scale: scale.value,
+    scale: scale,
   }).then((canvas) => {
     return canvas.toDataURL(type, 1.0);
   });
@@ -33,7 +43,7 @@ const generateZIP = (dataUrlArray: any) => {
 
     // load an image and add it to the zip file
     JSZipUtils.getBinaryContent(url, () => {
-      zip.file(`favicon-${count}.png`, dataUrl, { base64: true });
+      zip.file(`${fileTypes[count]}.png`, dataUrl, { base64: true });
       count++;
       if (count === dataUrlArray.length) {
         zip.generateAsync({ type: 'blob' }).then((content) => {
@@ -45,7 +55,9 @@ const generateZIP = (dataUrlArray: any) => {
 };
 
 const createFaviconPkg = (node: any, type = 'image/png') => {
-  const imgArr = imageSizes.map((scale: any) => {
+  const imgArr = fileTypes.map((file: any) => {
+    const str = file.split('x').pop();
+    const scale = calcScale(Number(str));
     return generateImage(node, type, scale).then((item) => {
       return item;
     });

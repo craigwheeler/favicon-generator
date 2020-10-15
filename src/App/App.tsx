@@ -56,10 +56,12 @@ const App = (): JSX.Element => {
     setWidth(192);
   };
 
-  const displayRectangle = () => {
-    setRadius(8);
-    setWidth(275);
-  };
+  // TODO: disabled rect need to look into consistent
+  // file naming which contradicts files sizes
+  // const displayRectangle = () => {
+  //   setRadius(8);
+  //   setWidth(275);
+  // };
 
   const handleSave = () => {
     createFaviconPkg(faviconRef.current);
@@ -88,7 +90,7 @@ const App = (): JSX.Element => {
               <span className="label">Favicon Shape</span>
               <div className="circle" onClick={() => displayCircle()} />
               <div className="square" onClick={() => displaySquare()} />
-              <div className="rectangle" onClick={() => displayRectangle()} />
+              {/* <div className="rectangle" onClick={() => displayRectangle()} /> */}
             </div>
             <Divider />
             {/* <Divider />
@@ -126,10 +128,10 @@ const App = (): JSX.Element => {
               </div>
             </MuiThemeProvider>
 
-            {/* <div className="selected-icon-label">
+            <div className="selected-icon-label">
               <p>Name: {icon.name}</p>
               <p>Code: {icon.code}</p>
-            </div> */}
+            </div>
           </div>
         </div>
       </AppContainer>
@@ -181,6 +183,8 @@ const AppContainer = styled.div`
     .selected-icon-label {
       text-align: center;
       color: #e8e8e8;
+      font-size: 12px;
+      margin-top: 40px;
       /* p {
         margin: 5px 0;
       } */
