@@ -1,10 +1,7 @@
 import html2canvas from 'html2canvas';
-
-const fileType = {
-  ICO: 'image/ico',
-  JPEG: 'image/jpeg',
-  PNG: 'image/png',
-};
+import JSZip from 'jszip';
+import JSZipUtils from 'jszip-utils';
+import { saveAs } from 'file-saver';
 
 const imageSizes = [
   { value: 0.17 }, // 32px - favicon.ico
@@ -16,20 +13,6 @@ const imageSizes = [
   { value: 1 }, // 196px - chrome for android home screen icon
 ];
 
-const saveAs = (uri: any, filename: any) => {
-  const link = document.createElement('a');
-
-  if (typeof link.download === 'string') {
-    link.href = uri;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  } else {
-    window.open(uri);
-  }
-};
-
 const generateImage = (node: any, type: any, scale: any) => {
   return html2canvas(node, {
     backgroundColor: null,
@@ -39,24 +22,38 @@ const generateImage = (node: any, type: any, scale: any) => {
   });
 };
 
-const saveAsPNG = (node: any, fileName: any = 'favicon.png', type: any = fileType.PNG) => {
+const generateZIP = (dataUrlArray: any) => {
+  const zip = new JSZip();
+  const zipFilename = 'favicon-generator-io.zip';
+  let count = 0;
+
+  dataUrlArray.forEach((url: any, i: any) => {
+    let dataUrl = dataUrlArray[i];
+    dataUrl = dataUrl.replace('data:image/png;base64,', '');
+
+    // load an image and add it to the zip file
+    JSZipUtils.getBinaryContent(url, () => {
+      zip.file(`favicon-${count}.png`, dataUrl, { base64: true });
+      count++;
+      if (count === dataUrlArray.length) {
+        zip.generateAsync({ type: 'blob' }).then((content) => {
+          saveAs(content, zipFilename);
+        });
+      }
+    });
+  });
+};
+
+const createFaviconPkg = (node: any, type = 'image/png') => {
   const imgArr = imageSizes.map((scale: any) => {
     return generateImage(node, type, scale).then((item) => {
       return item;
     });
   });
 
-  Promise.all(imgArr).then((images) => {
-    console.log('images: ', images);
+  Promise.all(imgArr).then((dataUrlArray) => {
+    generateZIP(dataUrlArray);
   });
 };
 
-// const saveAsICO = (node: any, fileName: any = 'favicon.ico', type: any = fileType.ICO) => {
-//   generateImage(node, fileName, type);
-// };
-
-// const saveAsJPEG = (node: any, fileName: any = 'favicon.jpeg', type: any = fileType.JPEG) => {
-//   generateImage(node, fileName, type);
-// };
-
-export { saveAsPNG };
+export { createFaviconPkg };
