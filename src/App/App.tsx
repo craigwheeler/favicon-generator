@@ -9,7 +9,7 @@ import RangeSlider from '../primitives/range-slider';
 import { createFaviconPkg } from '../components/utils/file-converter';
 
 const App = (): JSX.Element => {
-  const [icon, setIcon] = useState({ name: 'polymer', code: 'e8ab' });
+  const [icon, setIcon] = useState({ name: 'sentiment_very_satisfied', code: 'e815' });
   const [sliderValue, setSliderValue] = useState(125);
   const [radius, setRadius] = useState(50);
   const [width, setWidth] = useState(192);
@@ -31,7 +31,6 @@ const App = (): JSX.Element => {
   const faviconRef = React.createRef<any>();
 
   const showPickedIcon = (icon: any): any => {
-    // console.info('Selected Icon', icon); // prints {name: "access_alarm", code: "e190"}
     setIcon(icon);
   };
 
@@ -252,7 +251,7 @@ const AppContainer = styled.div`
         color: #e8e8e8;
         margin: 5px;
         .search {
-          min-width: 400px;
+          min-width: 450px;
         }
       }
     }

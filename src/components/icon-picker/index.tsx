@@ -19,7 +19,7 @@ const IconPicker = ({ onSelect }: IIconPicker): JSX.Element => {
 
   const fetchIcons = () => {
     const icons =
-      'https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIconsTwoTone-Regular.codepoints';
+      'https://raw.githubusercontent.com/google/material-design-icons/master/font/MaterialIcons-Regular.codepoints';
 
     return fetch(icons)
       .then((response) => response.text())
@@ -59,6 +59,7 @@ const IconPicker = ({ onSelect }: IIconPicker): JSX.Element => {
 
   const clearSearch = () => {
     setShowClear(false);
+    fetchIcons();
   };
 
   const returnedIcons = icons.map((icon: any, index: any) => {
@@ -179,7 +180,7 @@ const IconsGrid = styled.div`
   overflow-x: hidden;
   justify-content: center;
   height: 300px;
-  width: 400px;
+  width: 450px;
   background: #fff;
   color: #222;
   padding-top: 15px;
