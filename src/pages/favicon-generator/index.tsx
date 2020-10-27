@@ -204,7 +204,7 @@ const Container = styled.div`
         color: #e8e8e8;
         margin: 5px;
         .search {
-          min-width: 450px;
+          min-width: 400px;
         }
       }
     }

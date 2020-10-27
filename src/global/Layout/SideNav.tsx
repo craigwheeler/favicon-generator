@@ -1,23 +1,24 @@
 import React from 'react';
 import device from '../device';
 import styled from 'styled-components';
-// import Icon from '../../primitives/Icon';
+import Icon from '../../primitives/Icon';
 
 const SideNav = (): JSX.Element => {
   return (
     <NavContainer>
       <div className="nav-group">
-        {/* TODO: re-enable menu items as new functionaltiy is added */}
-        {/* <button>
+        <button>
+          <Icon name="queues" height={20} width={20} alt="Icon" />
+          Home
+        </button>
+        <button>
           <Icon name="dashboard" height={20} width={20} alt="Icon" />
-        </button> */}
-        {/* <button>
-          <Icon name="align-left" height={20} width={20} alt="Icon" />
-          Text Icon
-        </button> */}
-        {/* <button>
+          Favicon
+        </button>
+        <button>
           <Icon name="help" height={20} width={20} alt="Icon" />
-        </button> */}
+          Help
+        </button>
       </div>
     </NavContainer>
   );
@@ -80,10 +81,17 @@ const NavContainer = styled.aside`
         flex-direction: row;
         width: 100%;
         border: none;
-        justify-content: center;
-        padding: 10px 0;
+        justify-content: left;
+        padding: 12px 0px 12px 20px;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
         svg {
           margin-right: 10px;
+        }
+        &:focus {
+          background-color: #4c5cff85;
+          color: #fff;
         }
       }
     }

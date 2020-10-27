@@ -180,7 +180,7 @@ const IconsGrid = styled.div`
   overflow-x: hidden;
   justify-content: center;
   height: 300px;
-  width: 450px;
+  width: 400px;
   background: #fff;
   color: #222;
   padding-top: 15px;
