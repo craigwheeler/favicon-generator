@@ -52,7 +52,7 @@ const InputContainer = styled.div`
     letter-spacing: 0.3px;
     font-weight: 600;
     margin-right: 10px;
-    min-width: 125px;
+    min-width: 150px;
   }
   input {
     padding: 8px 15px;

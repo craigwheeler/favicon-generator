@@ -151,7 +151,10 @@ const Container = styled.div`
   .tools-section {
     background-color: #171c25;
     padding: 20px;
+    border-top: 1px dotted #4c4c4c;
     border-left: 1px dotted #4c4c4c;
+    /* border-bottom: 1px dotted #4c4c4c; */
+
     .tool-components {
       padding: 10px 5px;
       margin-bottom: 20px;

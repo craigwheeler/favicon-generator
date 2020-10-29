@@ -58,6 +58,6 @@ const Container = styled.div`
 const Content = styled.div`
   grid-area: content;
   display: grid;
-  grid-template-columns: 125px 1fr;
+  grid-template-columns: 150px 1fr;
   grid-template-areas: 'sidebar main';
 `;
