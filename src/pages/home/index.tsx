@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Home = (): JSX.Element => {
-  return <Styles>Hello Homepage</Styles>;
+const Home = ({ title }: any): JSX.Element => {
+  return <Styles>{title}</Styles>;
 };
 
 export default Home;

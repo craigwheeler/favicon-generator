@@ -3,17 +3,19 @@ import device from '../device';
 import styled from 'styled-components';
 import Icon from '../../primitives/Icon';
 
+import { Link } from 'react-router-dom';
+
 const SideNav = (): JSX.Element => {
   return (
     <NavContainer>
       <div className="nav-group">
         <button>
           <Icon name="queues" height={20} width={20} alt="Icon" />
-          Home
+          <Link to="/">Home</Link>
         </button>
         <button>
           <Icon name="dashboard" height={20} width={20} alt="Icon" />
-          Favicon
+          <Link to="/favicon-generator">Favicon</Link>
         </button>
         <button>
           <Icon name="help" height={20} width={20} alt="Icon" />
