@@ -48,6 +48,10 @@ const StyledLink = styled(Link)<{ isActive: boolean }>`
   color: #e8e8e8;
   padding: 15px 10px;
   text-decoration: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 
   svg {
     margin: 0 10px;
