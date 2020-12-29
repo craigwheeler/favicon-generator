@@ -29,6 +29,7 @@
     "jszip": "^3.5.0",
     "jszip-utils": "^0.1.0",
     "material-ui": "^0.20.2",
+    "node-sass": "^4.14.1",
     "prettier-eslint": "^10.1.1",
     "radium": "^0.26.1",
     "react": "^16.13.1",
