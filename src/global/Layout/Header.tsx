@@ -40,8 +40,9 @@ const HeaderContainer = styled.header`
 
   .brand-logo {
     display: flex;
-    width: 300px;
-    margin-left: 5px;
+    align-items: center;
+    width: 30px;
+    margin-left: 20px;
   }
 
   .header-logo {

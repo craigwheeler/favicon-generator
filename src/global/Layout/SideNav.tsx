@@ -26,7 +26,7 @@ const SideNav = (): JSX.Element => {
           onClick={() => setActive('favicon')}
         >
           <Icon name="dashboard" height={20} width={20} alt="Icon" />
-          Favicon
+          Favicon Generator
         </StyledLink>
 
         {/* TODO: add help link */}
