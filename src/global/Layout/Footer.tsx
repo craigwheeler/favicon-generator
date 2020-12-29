@@ -58,7 +58,7 @@ const Footer = (): JSX.Element => {
             <div className="footer-copyright">&copy; 2021 FaviconGenerator.io</div>
             <ul className="footer-social-links list-reset">
               <li>
-                <a href="#">
+                <a href="/#">
                   <span className="screen-reader-text">Facebook</span>
                   <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -69,7 +69,7 @@ const Footer = (): JSX.Element => {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/#">
                   <span className="screen-reader-text">Twitter</span>
                   <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -80,7 +80,7 @@ const Footer = (): JSX.Element => {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/#">
                   <span className="screen-reader-text">Google</span>
                   <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
                     <path

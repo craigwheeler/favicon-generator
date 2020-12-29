@@ -18,7 +18,7 @@ const Home = ({ title }: any): JSX.Element => {
                     <input className="input" type="email" name="email" placeholder="Enter your email..." />
                   </div>
                   <div className="control">
-                    <a className="button button-primary button-block" href="#">
+                    <a className="button button-primary button-block" href="/#">
                       Subscribe
                     </a>
                   </div>
