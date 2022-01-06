@@ -1,3 +1,12 @@
+<!-- PROJECT LOGO -->
+<p align="center">
+  <h1 align="center">Favicon Generator</h1>
+  <h2 align="center">A simple web app to generate favicons</h2>
+  <p align="center"><a href="https://favicongenerator.netlify.app" target="_blank">View the App</a></p>
+  <img src="src/assets/images/favicon-generator.png" alt="Favicon Generator" >
+</p>
+<br />
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
