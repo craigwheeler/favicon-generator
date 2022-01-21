@@ -36,7 +36,7 @@ const generateImage = (node: any, type: any, scale: any) => {
 
 const generateZIP = (dataUrlArray: any) => {
   const zip = new JSZip();
-  const zipFilename = 'favicon-generator-io.zip';
+  const zipFilename = 'favicon-generator.zip';
   let count = 0;
 
   dataUrlArray.forEach((url: any, i: any) => {
