@@ -84,8 +84,10 @@ const NavContainer = styled.aside`
     margin: 0;
     justify-content: space-between;
     width: 100%;
+    border-right: 1px dotted #4c4c4c;
+
     .border-top {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);=
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
     .border-bottom {
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);

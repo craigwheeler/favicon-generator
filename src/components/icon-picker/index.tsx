@@ -85,7 +85,7 @@ const IconPicker = ({ onSelect }: IIconPicker): JSX.Element => {
             )}
           </div>
         </Header>
-        {icons.length > 0 ? <IconsGrid>{returnedIcons}</IconsGrid> : <LinearProgress mode="indeterminate" />}
+        {icons.length > 0 ? <IconGrid>{returnedIcons}</IconGrid> : <LinearProgress mode="indeterminate" />}
       </>
     </MuiThemeProvider>
   );
@@ -174,7 +174,7 @@ const ItemContainer = styled.div`
   }
 `;
 
-const IconsGrid = styled.div`
+const IconGrid = styled.div`
   display: flex;
   flex-wrap: wrap;
   overflow-x: hidden;
@@ -184,6 +184,7 @@ const IconsGrid = styled.div`
   background: #fff;
   color: #222;
   padding-top: 15px;
+  /* background-color: #333333; */
 `;
 
 const BackgroundBox = styled.div`

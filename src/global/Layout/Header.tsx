@@ -37,6 +37,7 @@ const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px dotted #4c4c4c;
 
   .brand-logo {
     display: flex;

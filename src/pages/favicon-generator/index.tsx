@@ -129,8 +129,7 @@ const FaviconGenerator = (): JSX.Element => {
           </MuiThemeProvider>
 
           <div className="selected-icon-label">
-            <p>Name: {icon.name}</p>
-            <p>Code: {icon.code}</p>
+            <p>Icon: {icon.code}</p>
           </div>
         </div>
       </div>
@@ -151,9 +150,6 @@ const Container = styled.div`
   .tools-section {
     background-color: #171c25;
     padding: 20px;
-    border-top: 1px dotted #4c4c4c;
-    border-left: 1px dotted #4c4c4c;
-    /* border-bottom: 1px dotted #4c4c4c; */
 
     .tool-components {
       padding: 10px 5px;

@@ -17,7 +17,8 @@ const Layout = ({ title }: { children: JSX.Element; title: string }): JSX.Elemen
     <>
       <Helmet>
         <title>{title}</title>
-        <meta name="favicon generator" content="FaviconGenerator.io" />
+        <meta name="FaviconGenerator.io - Free tool to create favicons and app icons" content="FaviconGenerator.io" />
+        <meta name="description" content="An online tool to generate favicons using an icon picker." />
       </Helmet>
       <ThemeProvider theme={isLightTheme ? theme.light : theme.dark}>
         <GlobalStyle />
